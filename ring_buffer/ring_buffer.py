@@ -1,9 +1,22 @@
 class RingBuffer:
     def __init__(self, capacity):
-        pass
+        self.buffer = [None] * capacity
+        self.capacity = capacity
+        self.cur = 0
+
+    # class __Full(RingBuffer):
+    #     def append(self, x):
+    #         self.cur = (self.cur + 1) % self.capacity
+    #         self.buffer[self.cur] = x
+
+    #     def get(self):
+    #         return self.buffer[self.cur:] + self.buffer[:self.cur]
 
     def append(self, item):
-        pass
+        self.buffer[self.cur] = item
+        self.cur = self.cur + 1
+        if self.cur == self.capacity:
+            self.cur = 0
 
     def get(self):
-        pass
+        return [item for item in self.buffer if item is not None]
